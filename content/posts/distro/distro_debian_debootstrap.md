@@ -1,7 +1,7 @@
 ---
 weight: 100
 title: "Debootstrap Installeer Debian"
-date: "2023-08-06"
+date: "2025-12-27"
 author:
 draft: false
 description: "Hoe installeer je Debian met behulp van debootstrap"
@@ -45,8 +45,8 @@ pacman -S binutils debootstrap arch-install-scripts
 
 ```
 /usr/sbin/debootstrap --variant=minbase --components=main,contrib,non-free,non-free-firmware \
---include=nano,dialog,bash-completion,tmux,locales,console-setup,tasksel,\
-dosfstools,btrfs-progs,links,network-manager,sudo,git,tree,cryptsetup,cryptsetup-initramfs \
+--include=nano,dialog,bash-completion,tmux,locales,console-setup,tasksel,zstd,\
+dosfstools,btrfs-progs,links,sudo,git,tree,htop,cryptsetup,cryptsetup-initramfs \
 --arch amd64 bookworm /mnt/debinst http://ftp.nl.debian.org/debian/
 ```
 
@@ -60,20 +60,6 @@ source /etc/skel/.bashrc
 ```
 
 ### Tijd
-
-```
-nano /etc/adjtime
-```
-
-geef dit bestand de volgende inhoud:
-
-```
-0.0 0 0.0
-0
-UTC
-```
-
-dan:
 
 ```
 dpkg-reconfigure tzdata
@@ -106,9 +92,9 @@ nano /etc/apt/sources.list
 Zorg dat deze er als volg uitziet:
 
 ```
-deb http://ftp.nl.debian.org/debian bookworm main contrib non-free non-free-firmware
-deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free
-deb http://deb.debian.org/debian-security bookworm-security main contrib non-free
+deb http://ftp.nl.debian.org/debian trixie main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian/ trixie-updates main contrib non-free
+deb http://deb.debian.org/debian-security trixie-security main contrib non-free
 ```
 
 Daarna
@@ -126,7 +112,7 @@ tasksel install standard laptop
 ### firmware
 
 ```
-apt install -y firmware-linux-nonfree firmware-realtek firmware-iwlwifi bluez-firmware rfkill
+apt install -y firmware-linux-nonfree firmware-realtek firmware-iwlwifi bluez-firmware rfkill network-manager
 ```
 
 ### kernel
@@ -168,7 +154,7 @@ update-initramfs -u -k all
 
 ```
 apt install -y --no-install-recommends \
-task-xfce-desktop xfce4-terminal mousepad xfce4-power-manager-plugins xfce4-whiskermenu-plugin gnome-themes-extra papirus-icon-theme xfce4-notifyd gvfs gvfs-backends gvfs-fuse thunar-archive-plugin thunar-volman mugshot policykit-1-gnome light-locker menulibre dbus-x11 plymouth plymouth-themes network-manager-gnome pavucontrol gnome-keyring blueman
+task-xfce-desktop xfce4-terminal mousepad xfce4-power-manager-plugins xfce4-whiskermenu-plugin gnome-themes-extra papirus-icon-theme xfce4-notifyd gvfs gvfs-backends gvfs-fuse thunar-archive-plugin thunar-volman mugshot light-locker menulibre dbus-x11 plymouth plymouth-themes network-manager-gnome pavucontrol gnome-keyring blueman
 ```
 
 firefox met alle recommends:

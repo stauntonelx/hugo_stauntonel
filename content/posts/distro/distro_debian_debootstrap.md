@@ -1,7 +1,7 @@
 ---
 weight: 100
 title: "Debootstrap Installeer Debian"
-date: "2025-12-27"
+date: "2023-08-06"
 author:
 draft: false
 description: "Hoe installeer je Debian met behulp van debootstrap"
@@ -47,7 +47,7 @@ pacman -S binutils debootstrap arch-install-scripts
 /usr/sbin/debootstrap --variant=minbase --components=main,contrib,non-free,non-free-firmware \
 --include=nano,dialog,bash-completion,tmux,locales,console-setup,tasksel,zstd,\
 dosfstools,btrfs-progs,links,sudo,git,tree,htop,cryptsetup,cryptsetup-initramfs \
---arch amd64 bookworm /mnt/debinst http://ftp.nl.debian.org/debian/
+--arch amd64 trixie /mnt/debinst http://ftp.nl.debian.org/debian/
 ```
 
 ### Chroot
@@ -154,7 +154,7 @@ update-initramfs -u -k all
 
 ```
 apt install -y --no-install-recommends \
-task-xfce-desktop xfce4-terminal mousepad xfce4-power-manager-plugins xfce4-whiskermenu-plugin gnome-themes-extra papirus-icon-theme xfce4-notifyd gvfs gvfs-backends gvfs-fuse thunar-archive-plugin thunar-volman mugshot light-locker menulibre dbus-x11 plymouth plymouth-themes network-manager-gnome pavucontrol gnome-keyring blueman
+task-xfce-desktop xfce4-terminal mousepad xfce4-power-manager-plugins xfce4-whiskermenu-plugin gnome-themes-extra papirus-icon-theme xfce4-notifyd gvfs gvfs-backends gvfs-fuse thunar-archive-plugin thunar-volman mugshot policykit-1-gnome light-locker menulibre dbus-x11 plymouth plymouth-themes network-manager-gnome pavucontrol gnome-keyring blueman
 ```
 
 firefox met alle recommends:

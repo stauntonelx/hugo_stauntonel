@@ -132,6 +132,36 @@ smb://dock03/linuxshare/
 
 Geef daarna de smb credentials in van smbuser.
 
-### fstab
-
 ### rclone
+
+Configureer rclone remote
+
+```
+rclone config
+```
+
+Kies voor smb en volg de instructie op het scherm.
+Check daarna *~/.config/rclone/rclone.conf* die ziet er ongeveer zo uit:
+
+```
+[dock03_smb]
+type = smb
+host = dock03.home
+user = smbuser
+pass = ***************
+```
+
+Met dit commando raadpleeg je welke shares er zijn:
+
+```
+rclone lsd dock03_smb:
+```
+
+mount de share in terminal met:
+
+```
+rclone mount dock03_smb:/home/jack/Share/LinuxShare --daemon
+```
+
+Als je wilt kun je met systemd een opstart unit maken.
+ 
